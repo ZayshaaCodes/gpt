@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ai Assistant</title>
+  </head>
+  <body>
+    <div>
+      <h1>Planner:</h1>
+      <textarea id="planner-input"></textarea>
+      <button id="planner-submit">Submit</button>
+      <h2>Output:</h2>
+      <div id="planner-output"></div>
+    </div>
+    <div>
+      <h1>Commander:</h1>
+      <textarea id="commander-input"></textarea>
+      <button id="commander-submit">Submit</button>
+      <h2>Output:</h2>
+      <div id="commander-output"></div>
+    </div>
+
+    <!-- <script src="https://cdn.openai.com/sdk/js/0.5.5/openai.js"></script> -->
+    <!-- //use the node_modules -->
+    <script src="./node_modules/openai/dist/api.js"></script>
+    <script>
+      const plannerOutput = document.getElementById("planner-output");
+      const plannerInput = document.getElementById("planner-input");
+      document.getElementById("planner-submit").onclick = async () => {
+        const plan = plannerInput.value;
+        const response = await openai.complete({
+          engine: "text-davinci-002",
+          prompt: plan,
+          maxTokens: 1024,
+          n: 1,
+          stop: "\n"
+        });
+        const output = response.choices[0].text;
+        plannerOutput.innerHTML += `<> ${plan} <br>${output}<br><br>`;
+      };
+
+      const commanderOutput = document.getElementById("commander-output");
+      const commanderInput = document.getElementById("commander-input");
+      document.getElementById("commander-submit").onclick = async () => {
+        const command = commanderInput.value;
+        const response = await openai.complete({
+          engine: "text-davinci-002",
+          prompt: command,
+          maxTokens: 1024,
+          n: 1,
+          stop: "\n"
+        });
+        const output = response.choices[0].text;
+        commanderOutput.innerHTML += `<> ${command} <br>${output}<br><br>`;
+      };
+
+      const openai = new OpenAI(api_key);
+
+    </script>
+  </body>
+</html>

@@ -1,30 +1,27 @@
-Understood. Here is the next step:
+createFile("tic_tac_toe.py", "")
 
-2. Create an HTML file for the game interface.
+board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 
-You can use the `sh()` function to create a new file called `index.html` in the `/home/zayshaa/aiprojects/minesweeper` directory:
+def display_board(board):
+    shell(f"echo '{board[0][0]} | {board[0][1]} | {board[0][2]}'")
+    shell("echo ---------")
+    shell(f"echo '{board[1][0]} | {board[1][1]} | {board[1][2]}'")
+    shell("echo ---------")
+    shell(f"echo '{board[2][0]} | {board[2][1]} | {board[2][2]}'")
 
-```
-sh('touch /home/zayshaa/aiprojects/minesweeper/index.html')
-```
+def player_input():
+    marker = ""
+    while marker != "X" and marker != "O":
+        marker = input("Player 1, choose X or O: ").upper()
+    if marker == "X":
+        return ("X", "O")
+    else:
+        return ("O", "X")
 
-Then, you can use the `js()` function to edit the file and add the necessary HTML code:
-
-```javascript
-js('/home/zayshaa/aiprojects/minesweeper/index.html', `
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Minesweeper</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-  </head>
-  <body>
-    <h1>Minesweeper</h1>
-    <div id="game-board"></div>
-    <script src="js/game.js"></script>
-  </body>
-</html>
-`)
-```
-
-This will create an HTML file with a basic structure and a reference to a CSS file and a JavaScript file.
+def place_marker(board, marker, position):
+    if position <= 3:
+        board[0][position-1] = marker
+    elif position <= 6:
+        board[1][position-4] = marker
+    else:
+        board[2][position-7] = marker

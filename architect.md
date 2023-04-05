@@ -1,0 +1,1 @@
+architect@coder: Understood. Before we start, let's discuss the architecture of the game. We will be using the Model-View-Controller (MVC) architecture. The Model will handle the game logic, the View will handle the user interface, and the Controller will handle the user input. Do you have any questions about this architecture?
