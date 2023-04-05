@@ -79,7 +79,7 @@ function spawnAi(id, appendExamples = true) {
         return;
     }
 
-    const newAi = new AiAssistant("id.md", "gpt-3.5-turbo", process.env.OPENAI_ORGANIZATION, process.env.OPENAI_API, .0);
+    const newAi = new AiAssistant( `${id}.md`, "gpt-3.5-turbo", process.env.OPENAI_ORGANIZATION, process.env.OPENAI_API, .0);
     const directive = persona["Directive"].join("\n");
 
     newAi.setSystemDirective(directive);
